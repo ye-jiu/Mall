@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录注册</title>
+    <link rel="stylesheet" href="./css/Signin.css">
+</head>
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $(function() {
+        // $("input[name='inname']").blur(function() { //失去焦点
+        //     var namestr = $(this).val(); //val输入框的值
+        //     var regstr = /^[\u4e00-\u9fa5]{2,4}$/;
+        //     if (!regstr.test(namestr)) {
+        //         $(this).next().html("用户名必须是2-4个汉字").css("color", "red");
+        //         return false;
+        //     }
+        //     return true;
+        // });
+        // $("input[name = 'inname']").focus(function() { //获取焦点
+        //     $(this).val("");
+        //     $(this).next().html("");
+        // });
+
+        // $("input[name='pass']").blur(function() {
+        //     var passstr = $(this).val();
+        //     var regstr = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9~!@&%#_]{8,16}$/;
+        //     if (!regstr.test(passstr)) {
+        //         $(this).next().html("密码必须包含一个大写，一个小写字母，且长度为8到16位").css({
+        //             "color": "red",
+        //             "font-size": "12px"
+        //         });
+        //         return false;
+        //     }
+        //     return true;
+        // });
+        // $("input[name='pass']").focus(function() {
+        //     $(this).next().html("");
+        // });
+
+        // $("input[name='number']").blur(function() {
+        //     var numberstr = $(this).val();
+        //     var regstr = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        //     if (!regstr.test(numberstr)) {
+        //         $(this).next().html("请输入正确的手机号码").css({
+        //             "color": "red",
+        //             "font-size": "12px"
+        //         });
+        //         return false;
+        //     }
+        //     return true;
+        // });
+        // $("input[name='number']").focus(function() {
+        //     $(this).next().html("");
+        // });
+        // var tel = document.getElementsByName("inname")[0];
+        // var pass = document.getElementsByName("pass")[0];
+        $("input[type='submit']").click(function() {
+            // console.log($("[name='inname']").val())
+
+            var pass22 = document.getElementsByName("pass")[0]
+
+            var storage = window.localStorage.getItem("userArr")
+
+            var obj = JSON.parse(storage)
+
+            console.log(pass22.value)
+
+            var item = obj.find(function(el) {
+                return el.phone == $("[name='inname']").val()
+            })
+
+            if (item) {
+                if (item.password == $("[name='pass']").val()) {
+                    alert("登陆成功")
+                    location.href = "./indexx.html"
+                } else {
+                    alert("密码输入错误")
+                    pass22.value = []
+                }
+            } else {
+                alert("没有您的信息，请先去注册")
+                location.href = "./register.html"
+            }
+
+
+
+
+            //            $(obj).each(function(index, el) {
+            // console.log(index, el)
+            //            })
+
+
+        })
+    });
+</script>
+
+<body>
+    <div class="theme">
+        <!-- 上 -->
+        <div class="theme-1">
+
+            <div class="theme-1-1">
+                <a href="./index.html">
+                    <img src="./img/11.png">
+                </a>
+                <span class="theme-1-1-1">
+                    依《网络安全法》相关要求，即日起蘑菇街会员登陆需绑定手机。为保障您的账户安全及正常使用，如您尚未绑定，请尽快完成绑定，感谢您的理解和支持!
+                </span>
+            </div>
+        </div>
+        <!-- 中 -->
+        <div class="theme-2">
+            <div class="theme-2-1">
+                <div class="theme-2-1-1">
+                    <div class="theme-2-1-1-1-1"></div>
+                    <div class="theme-2-1-1-1">
+                        <div class="theme-2-1-1-1-2">
+                            <img src="./img/46.png">
+                        </div>
+                        <div class="theme-2-1-1-1-3">
+                            <img src="./img/36.jpg">
+                        </div>
+                        <a class="theme-2-1-1-1-4" href="https://www.mogu.com/apps/mobile?ptp=31.vz5jL.0.0.QzysyhrI" target="_blank">点击下载蘑菇街APP</a>
+                    </div>
+                    <div class="theme3">
+                        <div class="theme3-1">
+                            <div class="theme3-1-2">
+                                <div class="theme3-1-2-1">
+                                    <a href="javascript:;">普通登录</a>
+                                </div>
+                                <div class="theme3-1-2-2">
+                                    <a href="javascript:;">手机无密码登录</a>
+                                </div>
+                            </div>
+                            <form action="#" onsubmit="return false">
+                                <div class="theme30">
+                                    <div class="theme3-2">
+                                        <input type="text" maxlength="32" placeholder="用户名/邮箱/手机号" name="inname" class="theme3-2-1">
+                                        <dd></dd>
+                                        <input type="password" maxlength="32" placeholder="密码" data-type="loginpassword" name="pass" class="theme3-2-2">
+                                        <dd></dd>
+                                    </div>
+                                    <div class="theme33">
+                                        <input type="text" maxlength="32" placeholder="手机号码" name="number" class="theme33-1">
+                                        <dd></dd>
+                                        <a href="#" class="theme33-3">获取动态密码</a>
+                                        <input type="text" maxlength="32" data-type="phonecode" placeholder="动态密码" class="theme33-2">
+                                    </div>
+                                </div>
+                                <div class="theme3-3">
+                                    <input type="submit" value="登录" class="theme3-3-1">
+                                </div>
+                            </form>
+                            <div class="theme3-4">
+                                <a href="#" data-type="qq" class="theme3-4-1"><img src="./img/48(1).png">QQ登录</a>
+                                <a href="#" data-type="weixin" class="theme3-4-2"><img src="./img/49.png">微信登录</a>
+                            </div>
+                            <div class="theme3-5">
+                                <a href="./register.html" class="theme3-5-2">注册账号</a>
+                                <a href="#" class="theme3-5-1">忘记密码</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    var one = document.querySelector(".theme-2-1-1-1");
+                    var onetu = document.querySelector(".theme-2-1-1-1-1");
+                    var two = document.querySelector(".theme3");
+                    var b = true;
+                    onetu.onclick = function() {
+                        if (b) {
+                            this.style.background = 'url("img/47.png") no-repeat';
+                            one.style.display = "none";
+                            two.style.display = "block";
+                            b = false;
+                        } else {
+                            this.style.background = 'url("img/45.png") no-repeat';
+                            one.style.display = "block";
+                            two.style.display = "none";
+                            b = true;
+                        }
+                    }
+                </script>
+                <script>
+                    window.onload = function() {
+                        var oLi = document.querySelector(".theme3-1-2").getElementsByTagName("a");
+                        var oUl = document.querySelector(".theme30").getElementsByTagName("div");
+                        for (var i = 0; i < oLi.length; i++) {
+                            oLi[i].index = i;
+                            oLi[i].onclick = function() {
+                                for (var n = 0; n < oLi.length; n++) oLi[n].className = "";
+                                this.className = "theme3-2-1";
+                                for (var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+                                oUl[this.index].style.display = "block"
+                            }
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div class="them13">
+            <div class="them13-3">
+                <ul>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                </ul>
+            </div>
+            <div class="them13-4">
+                <p></p>
+                <span>©2019 Mogu.com 杭州卷瓜网络有限公司</span>
+                <p></p>
+            </div>
+            <div class="them13-5">
+                <p><span>营业执照：</span><a href="https://s10.mogucdn.com/mlcdn/c45406/181119_0a3j5l86651d5ciklai091dd78d41_1239x1753.jpg?acm=3.mce.1_10_19kyq.32170.0.rKESRrAxLeygS.pos_0-m_223509-sd_119">913301065526808764</a><b>|</b>
+                    <span>增值电信业务经营许可证：</span><a href="https://s10.mogucdn.com/mlcdn/c45406/171109_1ll0b37l83lj8e3i35h28a92g31i3_1239x1754.jpg?acm=3.mce.1_10_19kys.32170.0.rKESRrAxLeygW.pos_1-m_223510-sd_119">浙B2-20110349</a>
+                    <b>|</b><span>安全责任书</span><b>|</b>
+                </p>
+                <span>浙公网安备 33010602010221号</span>
+                <b>|</b>
+                <a href="https://s11.mogucdn.com/mlcdn/c45406/190531_3ggf3f5alhgkl3cgl1869ce3j72ih.pdf?acm=3.mce.1_10_1i4u6.32170.0.xf4TprAxNIdPH.pos_4-m_423011-sd_119">互联网药品信息服务资格证书编号：（浙)-经营性-2018-0002</a>
+                <b>|</b>
+                <a href="http://zjamr.zj.gov.cn/HTML/gggs/201905/793d932f-600e-4ccc-95f9-1ddd47e82dba.html?acm=3.mce.1_10_1i94i.32170.0.xf4TprAxNIdPI.pos_5-m_425789-sd_119">浙网食A33010003</a>
+                <b>|</b>
+                <a href="https://s11.mogucdn.com/mlcdn/c45406/190731_076d34acgb81k103eh6981e7gli43.pdf?acm=3.mce.1_10_1ihmo.32170.0.xf4TprAxNIdPJ.pos_6-m_431300-sd_119">出版物网络交易平台服务经营备案证</a>
+                <b>|</b>
+                <a href="https://s3.mogucdn.com/mlcdn/c45406/190627_3h4kj8i8g09edf49kgic1e3k487e3.pdf?acm=3.mce.1_10_1ineu.32170.0.xf4TprAxNIdPK.pos_7-m_435047-sd_119">(浙)网械平台备字[2018]第00006号</a>
+                <b>|</b>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+ul {
+    list-style: none
+}
+
+.box {
+    width: 968px;
+    height: 294px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.inner ul {
+    width: 1000%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* transition: all 1s */
+}
+
+.inner ul li {
+    float: left;
+    width: 968px;
+    height: 334px;
+}
+
+.inner ul li img {
+    width: 100%;
+}
+
+.bar {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -75px;
+    display: none;
+}
+
+.bar li {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    float: left;
+    background: #fff;
+    font-size: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bar li.active {
+    background: red
+}
+
+#left,
+#right {
+    position: absolute;
+    font-family: "宋体";
+    font-size: 20px;
+    width: 25px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    top: 50%;
+    margin-top: -50px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    cursor: pointer;
+}
+
+#left {
+    left: 0;
+}
+
+#right {
+    right: 0;
+}

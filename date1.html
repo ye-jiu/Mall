@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 800px;
+            margin: 200px auto;
+            color: red;
+            text-align: center;
+            font: 600 30px/30px "simsun";
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div id="time"></div>
+
+    <script>
+        var date = new Date();
+        var xingqiji = date.getDay();
+        var year = date.getFullYear()
+        var month = date.getMonth()
+        var day = date.getDate()
+        var hour = date.getHours()
+        var minute = date.getMinutes()
+
+        var seconds = date.getSeconds()
+
+        var arr = ["星期天", "星期一", "星期二"]
+        document.querySelector("div").innerHTML = `今天是：${year}年${month + 1}月${day}日 ${arr[xingqiji]}`
+        document.querySelector("div").innerHTML += `<br/>`
+        document.querySelector("div").innerHTML += `<br/>`
+        document.querySelector("div").innerHTML += `<br/>`
+        setInterval(fn, 1000);
+
+        fn()
+
+        function fn() {
+            date = new Date();
+            hour = date.getHours()
+
+            console.log(typeof hour)
+            minute = date.getMinutes()
+
+            seconds = date.getSeconds()
+            document.querySelector("#time").innerHTML = `当前的时间是 ${format(hour)}: ${format(minute)}: ${format(seconds)}`
+
+        }
+
+        function format(num) {
+            if (num < 10) {
+                num = "0" + num;
+                return num
+            } else {
+                return num
+            }
+        }
+
+
+
+        var date2 = new Date(2019, 6, 16, 18, 0, 0)
+        fn2()
+        setInterval(fn2, 1000);
+
+        function fn2() {
+            date = new Date();
+            var cha = date2 - date
+                // 毫秒数
+            console.log(cha)
+
+            console.log(parseInt(cha / 1000 % 60))
+            console.log(parseInt(cha / 1000 / 60 % 60))
+            console.log(parseInt(cha / 1000 / 60 / 60 % 24))
+            console.log(parseInt(cha / 1000 / 60 / 60 / 24 % 30))
+
+            console.log(date2)
+
+        }
+    </script>
+
+</body>
+
+</html>

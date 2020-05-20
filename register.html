@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录注册</title>
+    <link rel="stylesheet" href="./css/register.css">
+</head>
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $(function() {
+
+        var a1 = a2 = a3 = a4 = false
+        $("input[name='uname']").blur(function() { //失去焦点
+            var namestr = $(this).val();
+            var regstr = /^[\u4e00-\u9fa5]{2,4}$/;
+            if (!regstr.test(namestr)) {
+                $(this).parent().next().html("用户名必须是2-4个汉字").css({
+                    "color": "red",
+                    "width": "100%"
+                });
+                return false;
+            }
+            a1 = true;
+            return true;
+        });
+        $("input[name = 'uname']").focus(function() { //获取焦点
+            $(this).val("");
+            $(this).parent().next().html("");
+        });
+
+        $("input[name='phone']").blur(function() {
+            var phonestr = $(this).val();
+            var regstr = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+            if (!regstr.test(phonestr)) {
+                $(this).parent().next().html("请输入正确的手机号码").css({
+                    "color": "red",
+                    "width": "100%"
+                });
+                return false;
+            }
+            a2 = true;
+
+            return true;
+        });
+        $("input[name = 'phone']").focus(function() {
+            $(this).val("");
+            $(this).parent().next().html("");
+        });
+
+        $("input[name='pwd']").blur(function() {
+            var pwdstr = $(this).val();
+            var regstr = /^\d{6}$/;
+            if (!regstr.test(pwdstr)) {
+                $(this).parent().next().html("密码必须是6位数字").css({
+                    "color": "red",
+                    "width": "100%"
+                });
+                return false;
+            }
+            a3 = true;
+
+            return true;
+        });
+        $("input[name='pwd']").focus(function() {
+            $(this).parent().next().html("");
+        });
+
+        $("input[name='pwd2']").blur(function() {
+            var pwd2str = $(this).val();
+            var regstr = /^\d{6}$/;
+            if (regstr.test(pwd2str)) {
+                //判断两框的值是否相等
+
+                if ($("input[name='pwd']").val() == $("input[name='pwd2']").val()) {
+                    // $(this).parent().next().html("输入正确").css({
+                    $(this).parent().next().css({
+                        "color": "green",
+                        "width": "100%",
+                    });
+                } else {
+                    $(this).parent().next().html("两次密码输入不一致").css({
+                        "color": "red",
+                        "width": "100%"
+
+                    });
+                }
+
+            } else {
+                $(this).parent().next().html("输入错误").css({
+                    "color": "red",
+                    "width": "100%"
+                });
+            }
+            return true;
+        });
+        $("input[name='pwd2']").focus(function() {
+            $(this).parent().next().html("");
+        });
+        console.log($("pwd").val());
+        $("input[name='email']").blur(function() {
+            var emailstr = $(this).val();
+            var regstr = /^[\w\-]+@[a-z0-9A-Z]+(\.[a-zA-Z]{2,3}){1,2}$/;
+            if (!regstr.test(emailstr)) {
+                $(this).parent().next().html("邮箱格式不正确").css({
+                    "color": "red",
+                    "width": "100%"
+                });
+                return false;
+            }
+            a4 = true;
+
+            return true;
+        });
+        $("input[name='email']").focus(function() {
+            $(this).parent().next().html("");
+        });
+
+
+        if (localStorage.tt) {
+            var arr = JSON.stringify(localStorage.tt)
+        } else {
+            arr = []
+        };
+        for (var i = 0; i < arr.length; i++) {
+            if (uname) {
+
+            }
+        }
+
+
+        var Asubmit = document.querySelector(".btn_sub")
+        var phone = document.getElementsByName("phone")[0]
+        var password = document.getElementsByName("pwd")[0]
+        Asubmit.onclick = function() {
+
+            var array = []
+            if (window.localStorage.userArr) {
+                array = JSON.parse(window.localStorage.userArr)
+            }
+
+
+            // console.log(123123123)
+            if (a1 && a2 && a3 && a4) {
+
+                // console.log(123)
+                var objj = {
+                    phone: phone.value,
+                    password: password.value
+                }
+                array.push(objj)
+                    // console.log(array)
+
+                window.localStorage.userArr = JSON.stringify(array)
+                alert("注册成功")
+                location.href = "./Signin.html"
+            }
+        }
+    });
+
+    // var qq = a1=a2=a3=a4 = true;
+    // localStorage.setItem
+</script>
+
+
+<body>
+    <div class="theme">
+        <!-- 上 -->
+        <div class="theme-1">
+
+            <div class="theme-1-1">
+                <a href="./index.html">
+                    <img src="./img/11.png">
+                </a>
+                <span class="theme-1-1-1">
+                        依《网络安全法》相关要求，即日起蘑菇街会员登陆需绑定手机。为保障您的账户安全及正常使用，如您尚未绑定，请尽快完成绑定，感谢您的理解和支持!
+                </span>
+            </div>
+        </div>
+        <!-- 中 -->
+        <div class="theme-2">
+            <div class="theme-2-1">
+
+                <div class="home">
+                    <div class="head">
+                        <form action="" method="post">
+                            <dl class="dl1">
+                                <dt>用户名 : </dt>
+                                <dd class="dd1"><input type="text" value="请输入用户名" name="uname" class="dj" /></dd>
+                                <dd></dd>
+                            </dl>
+
+                            <dl class="dl1">
+                                <dt>手机号码 : </dt>
+                                <dd class="dd1"><input type="text" value="" name="phone" class="dj" /></dd>
+                                <dd></dd>
+                            </dl>
+
+                            <dl class="dl1">
+                                <dt>设置密码 : </dt>
+                                <dd class="dd1"><input type="password" name="pwd" class="dj" /></dd>
+                                <dd></dd>
+                            </dl>
+
+                            <dl class="dl1">
+                                <dt>确认密码 : </dt>
+                                <dd class="dd1"><input type="password" name="pwd2" class="dj" /></dd>
+                                <dd></dd>
+                            </dl>
+
+                            <dl class="dl1">
+                                <dt>用户邮箱 : </dt>
+                                <dd><input type="text" name="email" class="dj" /></dd>
+                                <dd></dd>
+                            </dl>
+                        </form>
+                    </div>
+                    <div class="foot">
+                        <input type="submit" name="Asubmit" value="注册" class="btn_sub">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="them13">
+            <div class="them13-3">
+                <ul>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                </ul>
+            </div>
+            <div class="them13-4">
+                <p></p>
+                <span>©2019 Mogu.com 杭州卷瓜网络有限公司</span>
+                <p></p>
+            </div>
+            <div class="them13-5">
+                <p><span>营业执照：</span><a href="https://s10.mogucdn.com/mlcdn/c45406/181119_0a3j5l86651d5ciklai091dd78d41_1239x1753.jpg?acm=3.mce.1_10_19kyq.32170.0.rKESRrAxLeygS.pos_0-m_223509-sd_119">913301065526808764</a><b>|</b>
+                    <span>增值电信业务经营许可证：</span><a href="https://s10.mogucdn.com/mlcdn/c45406/171109_1ll0b37l83lj8e3i35h28a92g31i3_1239x1754.jpg?acm=3.mce.1_10_19kys.32170.0.rKESRrAxLeygW.pos_1-m_223510-sd_119">浙B2-20110349</a>
+                    <b>|</b><span>安全责任书</span><b>|</b>
+                </p>
+                <span>浙公网安备 33010602010221号</span>
+                <b>|</b>
+                <a href="https://s11.mogucdn.com/mlcdn/c45406/190531_3ggf3f5alhgkl3cgl1869ce3j72ih.pdf?acm=3.mce.1_10_1i4u6.32170.0.xf4TprAxNIdPH.pos_4-m_423011-sd_119">互联网药品信息服务资格证书编号：（浙)-经营性-2018-0002</a>
+                <b>|</b>
+                <a href="http://zjamr.zj.gov.cn/HTML/gggs/201905/793d932f-600e-4ccc-95f9-1ddd47e82dba.html?acm=3.mce.1_10_1i94i.32170.0.xf4TprAxNIdPI.pos_5-m_425789-sd_119">浙网食A33010003</a>
+                <b>|</b>
+                <a href="https://s11.mogucdn.com/mlcdn/c45406/190731_076d34acgb81k103eh6981e7gli43.pdf?acm=3.mce.1_10_1ihmo.32170.0.xf4TprAxNIdPJ.pos_6-m_431300-sd_119">出版物网络交易平台服务经营备案证</a>
+                <b>|</b>
+                <a href="https://s3.mogucdn.com/mlcdn/c45406/190627_3h4kj8i8g09edf49kgic1e3k487e3.pdf?acm=3.mce.1_10_1ineu.32170.0.xf4TprAxNIdPK.pos_7-m_435047-sd_119">(浙)网械平台备字[2018]第00006号</a>
+                <b>|</b>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
